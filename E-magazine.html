@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: #da7c50;
+            }
+            h1{
+                color: #0614d6c7;
+                font-family: cursive; 
+                text-align: center;
+            }
+            #discounttable{
+                border-style:  solid ;
+                float: right;
+            }
+        
+            #result{
+                color: black;
+                font-weight: bold;
+            }
+            
+            
+    
+        </style>
+        
+        
+        <script>
+      
+          function validate()
+          {
+              var bcats=document.getElementsByName("bookCategory");
+              var bcat;
+              var price;
+              var disc;
+              for(var i=0;i<bcats.length;i++){
+                  if(bcats[i].checked){
+                      bcat=bcats[i].value;
+                  }
+              }
+              var bcount=document.getElementById("bookval").value;
+              bcount=parseInt(bcount);
+             
+              
+              if(bcat==="India Today" )
+              
+              {
+                  price=400;
+                  if(bcount<=250)
+                  {
+                      disc=0.05;
+                  }
+                  else{
+                      disc=0.07;
+                  }
+              }
+              else{
+                  price=300;
+                  if(bcount<=250){
+                      disc=0.03;
+                  }
+                  else{
+                      disc=0.04;
+                  }
+              }
+                 var tot= bcount*price-(bcount*price*disc);
+                 
+                  document.getElementById("result").innerHTML="Total Amount is:"+tot;
+                  return false;
+              }
+             
+             
+              
+        </script>
+        </head>
+        <body>
+        <h1>E-Magazine Grand Sale</h1>
+        <form>
+        <table>
+        <tr>
+        <td>Customer Name</td>
+        <td><input type="text" name="customerName" id="name" placeholder="Enter the Customer Name" pattern="[a-zA-Z\s]+" required="required">
+        </td>
+        </tr>
+        <tr>
+            <td>Email ID</td>
+            <td><input type="email" name="customerEmail" placeholder="Enter the Email ID" required ></td>
+        </tr>
+        <tr>
+            <td>Mobile Number</td>
+            <td><input type="text" name="customerMobileNumber" placeholder="Enter the Mobile Number" required  pattern="[89][0-9]{9}"></td>
+        </tr>
+        <tr>
+            <td>Book Category</td>
+            <td><input type="radio"   name="bookCategory" value="India Today" required>India Today  <input type="radio"  name="bookCategory" value="Times" required>Times</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td><input list="bookTypes" name="bookType" required autocomplete>
+            <datalist id="bookTypes">
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Fortnightly">Fortnightly</option> 
+            </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td>No of Books Required</td>
+            <td><input type="range" name="bookCount" min="1" max="500" value="1" id="bookval" oninput="markOutputId.value=bookval.value"> <output name="markOutputName" id="markOutputId"></output>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" name="submit" value="Calculate Total Amount" onclick="validate()"></td>   <td><input type="reset" name="Reset" value="Reset"></td>
+        </tr>
+    
+        
+        </table>
+        </form>
+        <div id="result"></div>
+        
+<table id="discounttable" border="1">
+    <caption>Discount Rate Chart</caption>
+        <tr>
+        <th>Book Type</th>
+        <th>Per Book Cost</th>
+        <th>Discount Rate(in percentage)</th>
+    </tr>
+    <tr>
+        <td>India Today</td>
+        <td>400</td>
+        <td>5% if total book count &lt;=250
+        </td>
+    </tr>
+    <tr>
+        <td>India Today</td>
+        <td>400</td>
+        <td>7% if total book count >250</td>
+    </tr>
+    <tr>
+        <td>Times</td>
+        <td>300</td>
+        <td>3% if total book count &lt;=250</td>
+    </tr>
+    <tr>
+        <td>Times</td>
+        <td>300</td>
+        <td>4% if total book count >250</td>
+    </tr>
+
+    
+    </table>
+   
+
+    </body>
+</html>
